@@ -4,7 +4,7 @@ IRC bot for #jruby on irc.freenode.net.
 
 h2. Description
 
-Using the {Cinch Ruby IRC plugin framework}[link:https://github.com/injekt/cinch], an IRC bot for the #jruby channel on the Freenode network was created.
+Using the "Cinch Ruby IRC plugin framework":https://github.com/injekt/cinch], an IRC bot for the #jruby channel on the Freenode network was created.
 
 It is used to respond to:
 
