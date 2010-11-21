@@ -19,7 +19,6 @@ class JiraTicketCreateNotifyCrons
   end
 
   def get_new_tickets
-    bot.logger.debug "Get New Tickets is running"
     agent = Mechanize.new
     page = agent.get('http://jira.codehaus.org/secure/Dashboard.jspa')
     page = agent.click page.link_with(:text => /Log In/)
