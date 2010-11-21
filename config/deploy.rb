@@ -25,4 +25,13 @@ namespace :deploy do
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do; end
+
+  task :after_symlink do
+    update_sqlite_symlink
+  end
+
+  desc "Update the symlink for the SQLite DB"
+  task :update_sqlite_symlink, :roles => [:app] do
+    run "ln -nfs #{shared_path}/db/jruby_jira_rss.db #{release_path}/db/jruby_jira_rss.db"
+  end
 end

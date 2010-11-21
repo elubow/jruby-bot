@@ -9,7 +9,7 @@ class JiraTicketCreateNotify
 
   def initialize(*args)
     # Connect to the database
-    @db = SQLite3::Database.new('jruby_jira_rss.db')
+    @db = SQLite3::Database.new('db/jruby_jira_rss.db')
     @db.results_as_hash = true   # Retrieve rows as a hash
 
     @table = 'new_tickets'

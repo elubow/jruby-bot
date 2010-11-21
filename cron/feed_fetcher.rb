@@ -9,7 +9,7 @@ def clean_summary(summary)
   rv = rv.chop
 end
 
-db = SQLite3::Database.new('jruby_jira_rss.db')
+db = SQLite3::Database.new('db/jruby_jira_rss.db')
 db.results_as_hash = true   # Retrieve rows as a hash
 
 db.execute("CREATE TABLE IF NOT EXISTS new_tickets (uuid string unique, ticket_summary string, ticket_author string, ticket string, created_at text, shown_in_channel int)")
