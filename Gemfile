@@ -1,7 +1,11 @@
+source 'http://rubygems.org'
+
 gem 'activesupport'
+gem 'capistrano'
 gem 'cinch'
 gem 'curb'
 gem 'feedzirra'
+gem 'hashie'
 gem 'hpricot'
 gem 'i18n'
 gem 'loofah'
