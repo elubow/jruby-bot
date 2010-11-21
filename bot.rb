@@ -7,7 +7,7 @@ require_relative 'lib/plugins'
 
 config = Hashie::Mash.new
 config.nick = "jruby-bot"
-config.channel = "#cinch-bots"
+config.channel = "#jruby"
 config.freenode_pass = "jrubyb0tp4ss"
 
 bot = Cinch::Bot.new do
