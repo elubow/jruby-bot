@@ -17,11 +17,7 @@ To get the bot up and running, ensure you are running on at least Ruby 1.9.2 and
 
 * ruby bot.rb
 
-Before starting this, make sure you have the feed_fetcher.rb running in crontab every minute:
-
-<pre>
-    *       *       *       *       *       cd ~/jruby-bot/current && ruby cron/feed_fetcher.rb >> /dev/null
-</pre>
+All the cronlike things are handled by the bots internal timers.
 
 *NOTE:* Currently the bot is not run as a daemon nor does it do any file logging so it is best to run the bot in a screen session.
 
