@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'activesupport'
 gem 'capistrano'
+gem 'capistrano_colors'
 gem 'cinch'
 gem 'curb'
 gem 'feedzirra'

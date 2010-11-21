@@ -9,7 +9,7 @@ Using the "Cinch Ruby IRC plugin framework":https://github.com/injekt/cinch, an 
 It is used to respond to:
 
 * Jira ticket information requests.
-* Notify the channel about newly create Jira tickets.
+* Notify the channel about newly created Jira tickets.
 
 h2. INSTALL
 
