@@ -1,8 +1,8 @@
-== JRuby IRC Bot
+h1. JRuby IRC Bot
 
 IRC bot for #jruby on irc.freenode.net.
 
-=== Description
+h2. Description
 
 Using the {Cinch Ruby IRC plugin framework}[link:https://github.com/injekt/cinch], an IRC bot for the #jruby channel on the Freenode network was created.
 
@@ -11,7 +11,7 @@ It is used to respond to:
 * Jira ticket information requests.
 * Notify the channel about newly create Jira tickets.
 
-=== INSTALL
+h2. INSTALL
 
 To get the bot up and running, ensure you are running on at least Ruby 1.9.2 and 'bundle install' to get the gems installed and run:
 
@@ -23,22 +23,22 @@ Before starting this, make sure you have the feed_fetcher.rb running in crontab 
 
 *NOTE:* Currently the bot is not run as a daemon nor does it do any file logging so it is best to run the bot in a screen session.
 
-=== IRC Commands
+h2. IRC Commands
 
 This is the list of commands that the bot currently responds to.
 
-==== !help
+h3. !help
 
 This will send a few messages to the requesting user with the commands that this bot is capable of responding to.
 
-==== !jira <ticket>
+h3. !jira <ticket>
 
 Show some general information about the ticket.  A specific example is as follows:
   < EricL> !jira JRUBY-5182
   < jruby-bot> [Bug:Open] BSON C Extension causes jRuby to segfault
   < jruby-bot> http://jira.codehaus.org/browse/JRUBY-5182
 
-=== TODO
+h2. TODO
 
 * Daemonize
 * Log certain things (like errors) to a file
