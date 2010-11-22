@@ -14,6 +14,10 @@ class SendHelp
     username.send "To see a jira ticket, type:"
     username.send "  !jira <ticket>"
     username.send "  !jira JRUBY-5182"
+
+    username.send "\"That's what she said\" a user:"
+    username.send "  !ss <nick>"
+    username.send "  !ss EricL"
   end
 
 end

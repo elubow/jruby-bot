@@ -16,7 +16,7 @@ bot = Cinch::Bot.new do
     c.nick              = config.nick
     c.server            = "irc.freenode.net"
     c.verbose           = true
-    c.plugins.plugins   = [FindJiraTicket, JiraTicketCreateNotify, JiraTicketCreateNotifyCrons, SendHelp]
+    c.plugins.plugins   = [FindJiraTicket, JiraTicketCreateNotify, JiraTicketCreateNotifyCrons, SendHelp, ThatsWhatSheSaid]
 
     c.plugins.options[JiraTicketCreateNotify][:channel] = config.channel
   end
