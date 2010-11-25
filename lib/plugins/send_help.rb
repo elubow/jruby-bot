@@ -17,7 +17,8 @@ class SendHelp
 
     username.send "\"That's what she said\" a user:"
     username.send "  !ss <nick>"
-    username.send "  !ss EricL"
+    username.send "Or \"That's what she said\" the channel:"
+    username.send "  !ss"
   end
 
 end
