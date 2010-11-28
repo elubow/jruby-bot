@@ -5,7 +5,7 @@ class JiraTicketCreateNotify
   attr_accessor :db
   attr_reader :table
 
-  timer 30, method: :ticket_notify
+  timer 40, method: :ticket_notify
 
   def initialize(*args)
     # Connect to the database
@@ -27,7 +27,13 @@ class JiraTicketCreateNotify
       Channel(config[:channel]).send("#{tkt['ticket_author']} created #{tkt['ticket']} at #{tkt['created_at']}")
       Channel(config[:channel]).send("  #{tkt['ticket_summary']}")
       Channel(config[:channel]).send("  http://jira.codehaus.org/browse/#{tkt['ticket']}")
-      @db.execute("UPDATE #{@table} SET shown_in_channel=1 WHERE uuid='#{tkt['uuid']}'")
+      begin
+        # Just in case, let's try it in transaction mode in case we failed the first time
+        @db.transaction { |db|  db.execute(" UPDATE #{@table} SET shown_in_channel=1 WHERE uuid='#{tkt['uuid']}';") }
+      rescue
+        sleep 1
+        @db.transaction { |db|  db.execute(" UPDATE #{@table} SET shown_in_channel=1 WHERE uuid='#{tkt['uuid']}';") }
+      end
     end 
   end
 

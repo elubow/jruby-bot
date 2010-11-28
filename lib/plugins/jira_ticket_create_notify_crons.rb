@@ -4,7 +4,7 @@ class JiraTicketCreateNotifyCrons
   attr_accessor :db
   attr_reader :table
 
-  timer 20, method: :get_new_tickets
+  timer 35, method: :get_new_tickets
 
   def initialize(*args)
     # Connect to the database
@@ -13,7 +13,7 @@ class JiraTicketCreateNotifyCrons
 
     @table = 'new_tickets'
 
-    db.execute("CREATE TABLE IF NOT EXISTS #{@table} (uuid string unique, ticket_summary string, ticket_author string, ticket string, created_at text, shown_in_channel int)")
+#    @db.execute("CREATE TABLE IF NOT EXISTS #{@table} (uuid string unique, ticket_summary string, ticket_author string, ticket string, created_at text, shown_in_channel int)")
 
     super
   end
@@ -45,8 +45,9 @@ class JiraTicketCreateNotifyCrons
       summary = "#{item.author} created #{ticket[1]} at #{created_at}"
     
       begin
-        db.execute("INSERT INTO new_tickets VALUES('#{item.entry_id[9..-1]}', '#{clean_summary(ticket[2])}', '#{item.author}','#{ticket[1]}', '#{created_at}', 0)")
+        @db.transaction { |db|  db.execute("INSERT INTO new_tickets VALUES('#{item.entry_id[9..-1]}', '#{clean_summary(ticket[2])}', '#{item.author}','#{ticket[1]}', '#{created_at}', 0);") }
       rescue Exception => e
+        bot.logger.debug "Ticket #{ticket[1]} already exists. Skipping..."
       end
     end
   end
