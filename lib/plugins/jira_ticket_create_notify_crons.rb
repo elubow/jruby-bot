@@ -46,8 +46,8 @@ class JiraTicketCreateNotifyCrons
     
       begin
         @db.transaction { |db|  db.execute("INSERT INTO new_tickets VALUES('#{item.entry_id[9..-1]}', '#{clean_summary(ticket[2])}', '#{item.author}','#{ticket[1]}', '#{created_at}', 0);") }
-      rescue Exception => e
-        bot.logger.debug "Ticket #{ticket[1]} already exists. Skipping..."
+      rescue 
+        # Ticket already exists. Skipping...
       end
     end
   end
