@@ -21,18 +21,17 @@ class JiraTicketCreateNotify
   def ticket_notify
     @db.execute("SELECT * FROM #{@table} WHERE shown_in_channel=0") do |tkt|
       
-      #  (Author) created (Ticket) at (19-Nov-2010 21:17)
-      #  (Ticket Summary)
-      #  http://jira.codehaus.org/browse/(Ticket)
-      Channel(config[:channel]).send("#{tkt['ticket_author']} created #{tkt['ticket']} at #{tkt['created_at']}")
-      Channel(config[:channel]).send("  #{tkt['ticket_summary']}")
-      Channel(config[:channel]).send("  http://jira.codehaus.org/browse/#{tkt['ticket']}")
       begin
-        # Just in case, let's try it in transaction mode in case we failed the first time
-        @db.transaction { |db|  db.execute(" UPDATE #{@table} SET shown_in_channel=1 WHERE uuid='#{tkt['uuid']}';") }
-      rescue
-        sleep 1
-        @db.transaction { |db|  db.execute(" UPDATE #{@table} SET shown_in_channel=1 WHERE uuid='#{tkt['uuid']}';") }
+        @db.execute(" UPDATE #{@table} SET shown_in_channel=1 WHERE uuid='#{tkt['uuid']}';")
+
+        #  (Author) created (Ticket) at (19-Nov-2010 21:17)
+        #  (Ticket Summary)
+        #  http://jira.codehaus.org/browse/(Ticket)
+        Channel(config[:channel]).send("#{tkt['ticket_author']} created #{tkt['ticket']} at #{tkt['created_at']}")
+        Channel(config[:channel]).send("  #{tkt['ticket_summary']}")
+        Channel(config[:channel]).send("  http://jira.codehaus.org/browse/#{tkt['ticket']}")
+      rescue Exception => e
+        bot.logger.debug "#{e.inspect}"
       end
     end 
   end
