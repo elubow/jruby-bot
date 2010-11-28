@@ -19,7 +19,7 @@ class JiraTicketCreateNotify
 
 
   def ticket_notify
-    @db.execute("SELECT * FROM #{@table} WHERE shown_in_channel=0") do |tkt|
+    @db.execute("SELECT * FROM #{@table} WHERE shown_in_channel=0 ORDER BY shown_in_channel") do |tkt|
       
       begin
         @db.execute(" UPDATE #{@table} SET shown_in_channel=1 WHERE uuid='#{tkt['uuid']}';")
